@@ -19,3 +19,12 @@ CREATE TABLE users (
     city VARCHAR(50),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+-- ==========================================
+-- CATEGORIES TABLE
+-- ==========================================
+
+CREATE TABLE categories (
+    category_id INT AUTO_INCREMENT PRIMARY KEY,
+    category_name VARCHAR(100) UNIQUE NOT NULL,
+    description TEXT
+);
