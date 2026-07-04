@@ -50,3 +50,26 @@ VALUES
 ('Fashion','Clothing and fashion products'),
 ('Books','Books and study materials'),
 ('Home Appliances','Home and kitchen appliances');
+
+-- ==========================================
+-- BRANDS TABLE
+-- ==========================================
+
+CREATE TABLE brands (
+    brand_id INT AUTO_INCREMENT PRIMARY KEY,
+    brand_name VARCHAR(100) NOT NULL UNIQUE,
+    country_of_origin VARCHAR(100),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- ==========================================
+-- SAMPLE BRAND DATA
+-- ==========================================
+
+INSERT INTO brands (brand_name, country_of_origin)
+VALUES
+('Apple', 'USA'),
+('Samsung', 'South Korea'),
+('Nike', 'USA'),
+('Adidas', 'Germany'),
+('Sony', 'Japan');
