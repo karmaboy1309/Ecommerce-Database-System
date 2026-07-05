@@ -73,3 +73,27 @@ VALUES
 ('Nike', 'USA'),
 ('Adidas', 'Germany'),
 ('Sony', 'Japan');
+-- ==========================================
+-- SUPPLIERS TABLE
+-- ==========================================
+
+CREATE TABLE suppliers (
+    supplier_id INT AUTO_INCREMENT PRIMARY KEY,
+    supplier_name VARCHAR(100) NOT NULL,
+    contact_person VARCHAR(100),
+    email VARCHAR(100) UNIQUE,
+    phone VARCHAR(15),
+    city VARCHAR(50),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- ==========================================
+-- SAMPLE SUPPLIER DATA
+-- ==========================================
+
+INSERT INTO suppliers
+(supplier_name, contact_person, email, phone, city)
+VALUES
+('Tech Distributors', 'Raj Mehta', 'raj@techdist.com', '9876543211', 'Mumbai'),
+('Fashion World', 'Neha Shah', 'neha@fashionworld.com', '9876543212', 'Delhi'),
+('Book Planet', 'Amit Patel', 'amit@bookplanet.com', '9876543213', 'Ahmedabad');
