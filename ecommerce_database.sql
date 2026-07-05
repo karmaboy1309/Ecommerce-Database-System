@@ -97,3 +97,18 @@ VALUES
 ('Tech Distributors', 'Raj Mehta', 'raj@techdist.com', '9876543211', 'Mumbai'),
 ('Fashion World', 'Neha Shah', 'neha@fashionworld.com', '9876543212', 'Delhi'),
 ('Book Planet', 'Amit Patel', 'amit@bookplanet.com', '9876543213', 'Ahmedabad');
+-- ==========================================
+-- INDEXES
+-- ==========================================
+
+CREATE INDEX idx_user_email
+ON users(email);
+
+CREATE INDEX idx_category_name
+ON categories(category_name);
+
+CREATE INDEX idx_brand_name
+ON brands(brand_name);
+
+CREATE INDEX idx_supplier_name
+ON suppliers(supplier_name);
