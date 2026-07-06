@@ -137,3 +137,19 @@ CREATE TABLE products (
     FOREIGN KEY (supplier_id)
         REFERENCES suppliers(supplier_id)
 );
+-- ==========================================
+-- SAMPLE PRODUCTS
+-- ==========================================
+
+INSERT INTO products
+(category_id, brand_id, supplier_id, product_name, description, price, stock_quantity, sku)
+VALUES
+(1, 1, 1, 'iPhone 16', 'Latest Apple smartphone', 89999.00, 25, 'APL-IP16-001'),
+
+(1, 2, 1, 'Samsung Galaxy S25', 'Flagship Android smartphone', 79999.00, 30, 'SMS-S25-002'),
+
+(2, 3, 2, 'Nike Air Max', 'Premium running shoes', 6999.00, 50, 'NK-AM-003'),
+
+(2, 4, 2, 'Adidas Ultraboost', 'Comfort sports shoes', 8499.00, 35, 'AD-UB-004'),
+
+(3, 5, 3, 'SQL Mastery Book', 'Comprehensive SQL learning guide', 799.00, 100, 'BK-SQL-005');
