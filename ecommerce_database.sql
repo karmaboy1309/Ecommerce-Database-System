@@ -112,3 +112,28 @@ ON brands(brand_name);
 
 CREATE INDEX idx_supplier_name
 ON suppliers(supplier_name);
+-- ==========================================
+-- PRODUCTS TABLE
+-- ==========================================
+
+CREATE TABLE products (
+    product_id INT AUTO_INCREMENT PRIMARY KEY,
+    category_id INT NOT NULL,
+    brand_id INT NOT NULL,
+    supplier_id INT NOT NULL,
+    product_name VARCHAR(150) NOT NULL,
+    description TEXT,
+    price DECIMAL(10,2) NOT NULL,
+    stock_quantity INT DEFAULT 0,
+    sku VARCHAR(50) UNIQUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (category_id)
+        REFERENCES categories(category_id),
+
+    FOREIGN KEY (brand_id)
+        REFERENCES brands(brand_id),
+
+    FOREIGN KEY (supplier_id)
+        REFERENCES suppliers(supplier_id)
+);
