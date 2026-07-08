@@ -184,3 +184,32 @@ VALUES
 (3, 80, 10, 'Warehouse B'),
 (4, 60, 8, 'Warehouse B'),
 (5, 120, 15, 'Warehouse C');
+
+
+-- ==========================================
+-- PRODUCT IMAGES TABLE
+-- ==========================================
+
+CREATE TABLE product_images (
+    image_id INT AUTO_INCREMENT PRIMARY KEY,
+    product_id INT NOT NULL,
+    image_url VARCHAR(255) NOT NULL,
+    is_primary BOOLEAN DEFAULT FALSE,
+    uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (product_id)
+        REFERENCES products(product_id)
+);
+
+-- ==========================================
+-- SAMPLE IMAGE DATA
+-- ==========================================
+
+INSERT INTO product_images
+(product_id, image_url, is_primary)
+VALUES
+(1, 'images/iphone16_front.jpg', TRUE),
+(1, 'images/iphone16_back.jpg', FALSE),
+(2, 'images/galaxy_s25.jpg', TRUE),
+(3, 'images/nike_airmax.jpg', TRUE),
+(5, 'images/sql_book.jpg', TRUE);
