@@ -154,3 +154,33 @@ VALUES
 (2, 4, 2, 'Adidas Ultraboost', 'Comfort sports shoes', 8499.00, 35, 'AD-UB-004'),
 
 (3, 5, 3, 'SQL Mastery Book', 'Comprehensive SQL learning guide', 799.00, 100, 'BK-SQL-005');
+
+-- ==========================================
+-- PRODUCT INVENTORY TABLE
+-- ==========================================
+
+CREATE TABLE product_inventory (
+    inventory_id INT AUTO_INCREMENT PRIMARY KEY,
+    product_id INT NOT NULL,
+    quantity_available INT NOT NULL DEFAULT 0,
+    quantity_reserved INT DEFAULT 0,
+    warehouse_location VARCHAR(100),
+    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        ON UPDATE CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (product_id)
+        REFERENCES products(product_id)
+);
+
+-- ==========================================
+-- SAMPLE INVENTORY DATA
+-- ==========================================
+
+INSERT INTO product_inventory
+(product_id, quantity_available, quantity_reserved, warehouse_location)
+VALUES
+(1, 50, 5, 'Warehouse A'),
+(2, 35, 3, 'Warehouse A'),
+(3, 80, 10, 'Warehouse B'),
+(4, 60, 8, 'Warehouse B'),
+(5, 120, 15, 'Warehouse C');
