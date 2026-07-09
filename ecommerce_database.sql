@@ -213,3 +213,26 @@ VALUES
 (2, 'images/galaxy_s25.jpg', TRUE),
 (3, 'images/nike_airmax.jpg', TRUE),
 (5, 'images/sql_book.jpg', TRUE);
+
+-- ==========================================
+-- SHOPPING CART TABLE
+-- ==========================================
+
+CREATE TABLE shopping_cart (
+    cart_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (user_id)
+        REFERENCES users(user_id)
+);
+
+-- ==========================================
+-- SAMPLE CART DATA
+-- ==========================================
+
+INSERT INTO shopping_cart (user_id)
+VALUES
+(1),
+(2),
+(3);
