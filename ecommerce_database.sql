@@ -269,3 +269,32 @@ VALUES
 (1, 3, 2),
 (2, 2, 1),
 (3, 5, 3);
+-- ==========================================
+-- WISHLIST TABLE
+-- ==========================================
+
+CREATE TABLE wishlist (
+    wishlist_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    product_id INT NOT NULL,
+    added_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (user_id)
+        REFERENCES users(user_id),
+
+    FOREIGN KEY (product_id)
+        REFERENCES products(product_id),
+
+    UNIQUE(user_id, product_id)
+);
+
+-- ==========================================
+-- SAMPLE WISHLIST DATA
+-- ==========================================
+
+INSERT INTO wishlist (user_id, product_id)
+VALUES
+(1, 2),
+(1, 5),
+(2, 1),
+(3, 4);
