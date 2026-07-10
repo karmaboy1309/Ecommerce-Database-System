@@ -298,3 +298,32 @@ VALUES
 (1, 5),
 (2, 1),
 (3, 4);
+-- ==========================================
+-- PRODUCT REVIEWS TABLE
+-- ==========================================
+
+CREATE TABLE product_reviews (
+    review_id INT AUTO_INCREMENT PRIMARY KEY,
+    product_id INT NOT NULL,
+    user_id INT NOT NULL,
+    rating INT NOT NULL CHECK (rating BETWEEN 1 AND 5),
+    review TEXT,
+    review_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (product_id)
+        REFERENCES products(product_id),
+
+    FOREIGN KEY (user_id)
+        REFERENCES users(user_id)
+);
+
+-- ==========================================
+-- SAMPLE REVIEW DATA
+-- ==========================================
+
+INSERT INTO product_reviews
+(product_id, user_id, rating, review)
+VALUES
+(1, 1, 5, 'Excellent product with amazing performance.'),
+(2, 2, 4, 'Very good quality and value for money.'),
+(3, 3, 5, 'Comfortable shoes and fast delivery.');
