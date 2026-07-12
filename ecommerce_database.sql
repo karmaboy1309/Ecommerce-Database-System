@@ -327,3 +327,30 @@ VALUES
 (1, 1, 5, 'Excellent product with amazing performance.'),
 (2, 2, 4, 'Very good quality and value for money.'),
 (3, 3, 5, 'Comfortable shoes and fast delivery.');
+
+-- ==========================================
+-- ORDERS TABLE
+-- ==========================================
+
+CREATE TABLE orders (
+    order_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    order_status VARCHAR(30) DEFAULT 'Pending',
+    total_amount DECIMAL(10,2) NOT NULL,
+    shipping_address VARCHAR(255) NOT NULL,
+
+    FOREIGN KEY (user_id)
+        REFERENCES users(user_id)
+);
+
+-- ==========================================
+-- SAMPLE ORDERS
+-- ==========================================
+
+INSERT INTO orders
+(user_id, total_amount, shipping_address)
+VALUES
+(1, 89999.00, 'Ahmedabad, Gujarat'),
+(2, 6999.00, 'Surat, Gujarat'),
+(3, 799.00, 'Vadodara, Gujarat');
