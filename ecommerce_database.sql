@@ -354,3 +354,31 @@ VALUES
 (1, 89999.00, 'Ahmedabad, Gujarat'),
 (2, 6999.00, 'Surat, Gujarat'),
 (3, 799.00, 'Vadodara, Gujarat');
+-- ==========================================
+-- ORDER ITEMS TABLE
+-- ==========================================
+
+CREATE TABLE order_items (
+    order_item_id INT AUTO_INCREMENT PRIMARY KEY,
+    order_id INT NOT NULL,
+    product_id INT NOT NULL,
+    quantity INT NOT NULL,
+    price DECIMAL(10,2) NOT NULL,
+
+    FOREIGN KEY (order_id)
+        REFERENCES orders(order_id),
+
+    FOREIGN KEY (product_id)
+        REFERENCES products(product_id)
+);
+
+-- ==========================================
+-- SAMPLE ORDER ITEMS
+-- ==========================================
+
+INSERT INTO order_items
+(order_id, product_id, quantity, price)
+VALUES
+(1, 1, 1, 89999.00),
+(2, 3, 1, 6999.00),
+(3, 5, 1, 799.00);
