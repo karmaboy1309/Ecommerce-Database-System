@@ -382,3 +382,30 @@ VALUES
 (1, 1, 1, 89999.00),
 (2, 3, 1, 6999.00),
 (3, 5, 1, 799.00);
+-- ==========================================
+-- PAYMENTS TABLE
+-- ==========================================
+
+CREATE TABLE payments (
+    payment_id INT AUTO_INCREMENT PRIMARY KEY,
+    order_id INT NOT NULL,
+    payment_method VARCHAR(50) NOT NULL,
+    payment_status VARCHAR(30) DEFAULT 'Pending',
+    transaction_id VARCHAR(100) UNIQUE,
+    amount DECIMAL(10,2) NOT NULL,
+    payment_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (order_id)
+        REFERENCES orders(order_id)
+);
+
+-- ==========================================
+-- SAMPLE PAYMENT DATA
+-- ==========================================
+
+INSERT INTO payments
+(order_id, payment_method, payment_status, transaction_id, amount)
+VALUES
+(1, 'UPI', 'Completed', 'TXN100001', 89999.00),
+(2, 'Credit Card', 'Completed', 'TXN100002', 6999.00),
+(3, 'Cash on Delivery', 'Pending', 'TXN100003', 799.00);
