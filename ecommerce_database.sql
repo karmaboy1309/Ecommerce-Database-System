@@ -409,3 +409,30 @@ VALUES
 (1, 'UPI', 'Completed', 'TXN100001', 89999.00),
 (2, 'Credit Card', 'Completed', 'TXN100002', 6999.00),
 (3, 'Cash on Delivery', 'Pending', 'TXN100003', 799.00);
+-- ==========================================
+-- SHIPPING TABLE
+-- ==========================================
+
+CREATE TABLE shipping (
+    shipping_id INT AUTO_INCREMENT PRIMARY KEY,
+    order_id INT NOT NULL,
+    courier_name VARCHAR(100),
+    tracking_number VARCHAR(100) UNIQUE,
+    shipping_status VARCHAR(30) DEFAULT 'Processing',
+    expected_delivery DATE,
+    delivered_date DATE,
+
+    FOREIGN KEY (order_id)
+        REFERENCES orders(order_id)
+);
+
+-- ==========================================
+-- SAMPLE SHIPPING DATA
+-- ==========================================
+
+INSERT INTO shipping
+(order_id, courier_name, tracking_number, shipping_status, expected_delivery)
+VALUES
+(1, 'BlueDart', 'BD123456789', 'Shipped', '2026-07-20'),
+(2, 'Delhivery', 'DL987654321', 'Delivered', '2026-07-18'),
+(3, 'Ekart', 'EK456789123', 'Processing', '2026-07-22');
