@@ -436,3 +436,27 @@ VALUES
 (1, 'BlueDart', 'BD123456789', 'Shipped', '2026-07-20'),
 (2, 'Delhivery', 'DL987654321', 'Delivered', '2026-07-18'),
 (3, 'Ekart', 'EK456789123', 'Processing', '2026-07-22');
+-- ==========================================
+-- COUPONS TABLE
+-- ==========================================
+
+CREATE TABLE coupons (
+    coupon_id INT AUTO_INCREMENT PRIMARY KEY,
+    coupon_code VARCHAR(50) NOT NULL UNIQUE,
+    discount_type ENUM('Percentage', 'Flat') NOT NULL,
+    discount_value DECIMAL(10,2) NOT NULL,
+    minimum_order_amount DECIMAL(10,2) DEFAULT 0,
+    expiry_date DATE NOT NULL,
+    is_active BOOLEAN DEFAULT TRUE
+);
+
+-- ==========================================
+-- SAMPLE COUPONS
+-- ==========================================
+
+INSERT INTO coupons
+(coupon_code, discount_type, discount_value, minimum_order_amount, expiry_date)
+VALUES
+('WELCOME10', 'Percentage', 10, 1000, '2027-12-31'),
+('SAVE500', 'Flat', 500, 5000, '2027-12-31'),
+('FEST20', 'Percentage', 20, 2000, '2027-12-31');
