@@ -460,3 +460,29 @@ VALUES
 ('WELCOME10', 'Percentage', 10, 1000, '2027-12-31'),
 ('SAVE500', 'Flat', 500, 5000, '2027-12-31'),
 ('FEST20', 'Percentage', 20, 2000, '2027-12-31');
+-- ==========================================
+-- ORDER COUPONS TABLE
+-- ==========================================
+
+CREATE TABLE order_coupons (
+    order_coupon_id INT AUTO_INCREMENT PRIMARY KEY,
+    order_id INT NOT NULL,
+    coupon_id INT NOT NULL,
+    discount_amount DECIMAL(10,2) NOT NULL,
+
+    FOREIGN KEY (order_id)
+        REFERENCES orders(order_id),
+
+    FOREIGN KEY (coupon_id)
+        REFERENCES coupons(coupon_id)
+);
+
+-- ==========================================
+-- SAMPLE ORDER COUPONS
+-- ==========================================
+
+INSERT INTO order_coupons
+(order_id, coupon_id, discount_amount)
+VALUES
+(1, 1, 8999.90),
+(2, 2, 500.00);
