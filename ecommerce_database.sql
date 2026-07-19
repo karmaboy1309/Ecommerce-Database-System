@@ -486,3 +486,27 @@ INSERT INTO order_coupons
 VALUES
 (1, 1, 8999.90),
 (2, 2, 500.00);
+-- ==========================================
+-- RETURNS TABLE
+-- ==========================================
+
+CREATE TABLE returns (
+    return_id INT AUTO_INCREMENT PRIMARY KEY,
+    order_item_id INT NOT NULL,
+    return_reason VARCHAR(255) NOT NULL,
+    return_status VARCHAR(30) DEFAULT 'Requested',
+    request_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (order_item_id)
+        REFERENCES order_items(order_item_id)
+);
+
+-- ==========================================
+-- SAMPLE RETURN DATA
+-- ==========================================
+
+INSERT INTO returns
+(order_item_id, return_reason, return_status)
+VALUES
+(1, 'Received damaged product', 'Approved'),
+(2, 'Wrong size delivered', 'Requested');
