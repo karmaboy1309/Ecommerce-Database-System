@@ -510,3 +510,27 @@ INSERT INTO returns
 VALUES
 (1, 'Received damaged product', 'Approved'),
 (2, 'Wrong size delivered', 'Requested');
+-- ==========================================
+-- REFUNDS TABLE
+-- ==========================================
+
+CREATE TABLE refunds (
+    refund_id INT AUTO_INCREMENT PRIMARY KEY,
+    return_id INT NOT NULL,
+    refund_amount DECIMAL(10,2) NOT NULL,
+    refund_status VARCHAR(30) DEFAULT 'Pending',
+    refund_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (return_id)
+        REFERENCES returns(return_id)
+);
+
+-- ==========================================
+-- SAMPLE REFUND DATA
+-- ==========================================
+
+INSERT INTO refunds
+(return_id, refund_amount, refund_status)
+VALUES
+(1, 89999.00, 'Completed');
+
