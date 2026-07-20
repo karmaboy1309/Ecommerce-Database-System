@@ -534,3 +534,22 @@ INSERT INTO refunds
 VALUES
 (1, 89999.00, 'Completed');
 
+-- ==========================================
+-- SALES SUMMARY VIEW
+-- ==========================================
+
+CREATE VIEW SalesSummaryView AS
+SELECT
+    u.user_id,
+    CONCAT(u.first_name, ' ', u.last_name) AS customer_name,
+    COUNT(o.order_id) AS total_orders,
+    SUM(o.total_amount) AS total_spent
+FROM users u
+LEFT JOIN orders o
+    ON u.user_id = o.user_id
+GROUP BY
+    u.user_id,
+    customer_name;
+
+-- View Sales Summary
+SELECT * FROM SalesSummaryView;
