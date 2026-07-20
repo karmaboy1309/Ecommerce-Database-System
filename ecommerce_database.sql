@@ -553,3 +553,24 @@ GROUP BY
 
 -- View Sales Summary
 SELECT * FROM SalesSummaryView;
+-- ==========================================
+-- TOP SELLING PRODUCTS VIEW
+-- ==========================================
+
+CREATE VIEW TopSellingProductsView AS
+SELECT
+    p.product_id,
+    p.product_name,
+    SUM(oi.quantity) AS total_quantity_sold,
+    SUM(oi.quantity * oi.price) AS total_sales
+FROM products p
+JOIN order_items oi
+    ON p.product_id = oi.product_id
+GROUP BY
+    p.product_id,
+    p.product_name
+ORDER BY
+    total_quantity_sold DESC;
+
+-- View Top Selling Products
+SELECT * FROM TopSellingProductsView;
