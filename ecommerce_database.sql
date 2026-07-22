@@ -603,3 +603,25 @@ DELIMITER ;
 
 -- Test Procedure
 CALL GetOrderDetails(1);
+-- ==========================================
+-- STORED PROCEDURE : CUSTOMER PURCHASE HISTORY
+-- ==========================================
+
+DELIMITER $$
+
+CREATE PROCEDURE GetCustomerPurchaseHistory(IN p_user_id INT)
+BEGIN
+    SELECT
+        o.order_id,
+        o.order_date,
+        o.order_status,
+        o.total_amount
+    FROM orders o
+    WHERE o.user_id = p_user_id
+    ORDER BY o.order_date DESC;
+END$$
+
+DELIMITER ;
+
+-- Test Procedure
+CALL GetCustomerPurchaseHistory(1);
