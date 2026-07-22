@@ -573,3 +573,33 @@ ORDER BY
 
 -- View Top Selling Products
 SELECT * FROM TopSellingProductsView;
+-- ==========================================
+-- STORED PROCEDURE : GET ORDER DETAILS
+-- ==========================================
+
+DELIMITER $$
+
+CREATE PROCEDURE GetOrderDetails(IN p_order_id INT)
+BEGIN
+    SELECT
+        o.order_id,
+        CONCAT(u.first_name, ' ', u.last_name) AS customer_name,
+        p.product_name,
+        oi.quantity,
+        oi.price,
+        o.total_amount,
+        o.order_status
+    FROM orders o
+    JOIN users u
+        ON o.user_id = u.user_id
+    JOIN order_items oi
+        ON o.order_id = oi.order_id
+    JOIN products p
+        ON oi.product_id = p.product_id
+    WHERE o.order_id = p_order_id;
+END$$
+
+DELIMITER ;
+
+-- Test Procedure
+CALL GetOrderDetails(1);
